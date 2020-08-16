@@ -4,74 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-
     <title>Mission to Mars</title>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="jumbotron text-center">
             <h1>Mission to Mars</h1>
             <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
     </div>
     <div class="container">
-        <div class="col-md-12">
-            <h2>Latest Mars News</h2>
-            <h4>{{data.title}}</h4>
-            <p>{{data.news}}</p>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Latest Mars News</h2>
+                <h4 class="heading">{{data.title}}</h4>
+                <p>{{data.news}}</p>
+            </div>
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-12">
-            <h2>Featured Mars Image</h2>
-            <img src="{{data.featured_image}}" style="max-width:100%; max-height: auto;" alt="mars image">
-        </div>
-
-        <div class="col-lg-4 col-md-4 col-sm-12">
-            <div class="card" style="max-width: 18rem">
-                <div class="card-body text-white bg-dark">
-                    <h3 class="card-title">Current Weather on Mars</h3>
-                    <p class="card-text">{{data.weather}}</p>
+        <div class="row">
+            <div class="col-md-7 col-sm-12">
+                <div class="box">
+                    <h2>Featured Mars Image</h2>
+                    <img src="{{data.featured_image}}" style="max-width:100%; max-height: auto;" alt="mars image">
                 </div>
             </div>
+            <div class="col-md-5 col-sm-12">
+                <div class="box"></div>
+                <div class="card" style="max-width: 30rem">
+                    <div class="card-body">
+                        <h3 class="card-title">Current Weather on Mars</h3>
+                        <p class="card-text">{{data.weather}}</p>
+                    </div>
+                </div>
 
-            <div class="table">
-                <h3>Mars Facts</h3>
-                <p>{{data.mars_facts}}</p>
+                <div>
+                    <h3 style="padding-top: 25px;">Mars Facts</h3>
+                    <table>{{data.mars_facts|safe}}</table>
+                </div>
             </div>
         </div>
     </div>
-
 
     <div class="container">
-        <h3 text-align="center">Mars Hemispheres</h3>
+        <h3 class="text-center" style="padding-top: 15px; margin-top: 30px;">Mars Hemispheres</h3>
         <hr>
-        <div class="card">
-            {% for image in data.hemisphere %}
-            <div class="col-md-6">
-                <img class="thumbnail" src="{{image.img_url}}" width="100%" alt="{{image.title}}">
-                <div class="card-body">
-                    <h4 class="card-title">{{image.title}}</h4>
+
+        <div class="card" style="image-rendering: auto;">
+            <div class="row">
+                {% for image in data.hemisphere %}
+                <div class="col-md-6">
+                    <div class="box">
+                        <img class="thumbnail" src="{{image.img_url}}" style="max-width:100%;" alt="{{image.title}}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{image.title}}</h4>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </div>
 
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -1,0 +1,23 @@
+.container-fluid {
+    padding-left: 10%;
+    padding-right: 10%;
+    }
+
+body{
+        background-color: lightgray;
+    }
+
+.container {
+        justify-content: space-evenly;
+    }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.img {
+    width: 600px;
+}

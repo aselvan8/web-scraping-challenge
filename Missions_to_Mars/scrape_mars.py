@@ -128,4 +128,7 @@ def scrape():
         "hemisphere": hemisphere_image_urls
     }
 
+    #Close the browser after scraping
+    browser.quit()
+    
     return(mars)
