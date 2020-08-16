@@ -11,14 +11,13 @@ import time
 def init_browser():
     # Use splinter to navigate the site
     executable_path = {'executable_path': 'chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 
 def scrape():
     browser = init_browser()
-
     mars = {}
-    
+
     # url for NASA's latest news
     url = "https://mars.nasa.gov/news/"
 
@@ -92,7 +91,7 @@ def scrape():
     url_h = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url_h)
     time.sleep(2)
-    
+
     # create html to parse
     html = browser.html
 
@@ -121,15 +120,12 @@ def scrape():
         hemisphere_image_urls.append({"title": title, "img_url": url_c})
 
     mars = {
-        "news_title": news_title,
-        "paragraph" : news_p,
-        "featured_image_url": featured_image_url,
-        "mars_weather": mars_weather,
+        "title": news_title,
+        "news" : news_p,
+        "featured_image": featured_image_url,
+        "weather": mars_weather,
         "mars_facts": facts_table,
-        "hemisphere_img_urls": hemisphere_img_urls
+        "hemisphere": hemisphere_image_urls
     }
 
-    # Close the browser after scraping
-    browser.quit()
-    
     return(mars)
